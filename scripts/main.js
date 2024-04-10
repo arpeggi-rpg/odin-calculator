@@ -18,18 +18,15 @@ const divide = function(num1, num2) {
 const calc = function(num1, op, num2) {
     switch (op) {
         case '+':
-            add(num1, num2);
-            break;
+            return add(num1, num2);
         case '-':
-            subtract(num1, num2);
-            break;
+            return subtract(num1, num2);
         case '*':
-            multiply(num1, num2);
-            break;
+            return multiply(num1, num2);
         case '/':
-            divide(num1, num2);
-            break;
+            return divide(num1, num2);
         default:
             break;
     }
-}
+};
+
