@@ -1,6 +1,9 @@
 let num1 = 2;
 let op = '+';
 let num2 = 2;
+const digitButtons = document.querySelectorAll(".digitButton");
+const opButtons = document.querySelectorAll(".opButton");
+const display = document.querySelector("#screen")
 
 const add = function(num1, num2) {
     return num1 + num2;
@@ -34,3 +37,10 @@ const calc = function(num1, op, num2) {
     }
 };
 
+const updateDisplay = function(inputNum) {
+
+}
+
+for (let button of digitButtons) {
+    button.addEventListener("click", () => updateDisplay(button.textContent));
+}
