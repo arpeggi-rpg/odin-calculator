@@ -1,12 +1,13 @@
-let num1 = 2;
+let x = 0;
 let op = "";
-let num2 = 0;
+let y = 0;
+let activeNum = "x";
 let currentNum = "0";
 const digitButtons = document.querySelectorAll(".digitButton");
 const opButtons = document.querySelectorAll(".opButton");
 const decimalButton = document.querySelector("#decimalButton");
 const equalsButton = document.querySelector("#equalsButton");
-const display = document.querySelector("#screenContents")
+const display = document.querySelector("#screenContents");
 
 const add = function(num1, num2) {
     return num1 + num2;
@@ -25,7 +26,7 @@ const divide = function(num1, num2) {
     return num1 / num2;
 };
 
-const calc = function(num1, op, num2) {
+const calc = function(num1, num2) {
     switch (op) {
         case '+':
             return add(num1, num2);
@@ -40,38 +41,62 @@ const calc = function(num1, op, num2) {
     }
 };
 
-const updateNum = function(input) {
-    if (input == "." && currentNum.indexOf(".") != -1) return;
-    if (currentNum == "0") {
-        display.textContent = input;
-        currentNum = input;
+const switchNum = function(isRes = false) {
+    if (isRes) {activeNum = "res"; return;} 
+    if (activeNum == "x") {
+        activeNum = "y";
     }
     else {
-        if (display.textContent.length < 10) display.textContent += input;
-        currentNum += input;
+        activeNum = "x";
     }
 }
 
-const updateEquals = function(input) {
-    if (op == "") {
-        num1 = currentNum.parseInt();
+const updateNum = function(input) {
+    if (activeNum == "res") {switchNum(); currentNum = "0";}
+    if (input == "." && currentNum.indexOf(".") != -1) return;
+    if (currentNum == "0") currentNum = input;
+    else currentNum += input;
+    if (display.textContent.length < 10) display.textContent = currentNum;
+}
+
+const updateEquals = function() {
+    if (activeNum == "x"){
+        x = parseFloat(currentNum);
         op = "+";
-        num2 = 0;
-        let result = calc(num1, op, num2).toString();
-        display.textContent = result;
-        currentNum = result;
+        let result = calc(x, 0);
+        display.textContent = result.toString();
+        currentNum = "0";
+    }
+    else if (activeNum == "res"){
+        switchNum();
+        currentNum = "0";
     }
     else {
-        num2 = currentNum.parseInt();
-        let result = calc(num1, op, num2);
-        display.textContent = result.toString();
-        currentNum = result;
-        op = "";
+        y = parseFloat(currentNum);
+        let result = calc(x, y);
+        x = result;
+        let resultStr = result.toString();
+        currentNum = resultStr;
+        display.textContent = resultStr;
+        switchNum();
     }
 }
 
 const updateOp = function(input) {
-
+    if (activeNum == "x") {
+        x = parseFloat(currentNum);
+        op = input;
+        switchNum();
+        currentNum = "0";
+    }
+    else {
+        y = parseFloat(currentNum);
+        op = input;
+        let result = calc(x, y);
+        x = result;
+        display.textContent = result.toString();
+        switchNum(isRes = true);
+    }
 }
 
 for (let button of digitButtons) {
