@@ -52,6 +52,7 @@ const switchNum = function(isRes = false) {
 }
 
 const updateNum = function(input) {
+    // Res state - 
     if (activeNum == "res") {switchNum(); currentNum = "0";}
     if (input == "." && currentNum.indexOf(".") != -1) return;
     if (currentNum == "0") currentNum = input;
@@ -65,7 +66,6 @@ const updateEquals = function() {
         op = "+";
         let result = calc(x, 0);
         display.textContent = result.toString();
-        currentNum = "0";
     }
     else if (activeNum == "res"){
         switchNum();
