@@ -42,6 +42,15 @@ const calc = function(num1, num2) {
 };
 
 const switchNum = function(isRes = false) {
+    /*
+    Res state - If the user presses operator buttons repeatedly,
+    it will perform those operations with the same second operand on the result.
+    Compare this to pressing the equals sign which will not reperform the operation.
+    After pressing the equals sign to calculate, pressing an operator will require you to
+    input a new second operand.
+    Pressing a number key will begin inputting a new first operand, an identical state to
+    when the calculator first loads.
+    */
     if (isRes) {activeNum = "res"; return;} 
     if (activeNum == "x") {
         activeNum = "y";
@@ -52,7 +61,6 @@ const switchNum = function(isRes = false) {
 }
 
 const updateNum = function(input) {
-    // Res state - 
     if (activeNum == "res") {switchNum(); currentNum = "0";}
     if (input == "." && currentNum.indexOf(".") != -1) return;
     if (currentNum == "0") currentNum = input;
