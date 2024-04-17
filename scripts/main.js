@@ -43,7 +43,7 @@ const calc = function(num1, num2) {
 
 const switchNum = function(isRes = false) {
     /*
-    Res state - If the user presses operator buttons repeatedly,
+    Res state - If the user presses the same operator button repeatedly,
     it will perform those operations with the same second operand on the result.
     Compare this to pressing the equals sign which will not reperform the operation.
     After pressing the equals sign to calculate, pressing an operator will require you to
@@ -94,6 +94,15 @@ const updateOp = function(input) {
     if (activeNum == "x") {
         x = parseFloat(currentNum);
         op = input;
+        switchNum();
+        currentNum = "0";
+    }
+    // If the user switches operator, we want to take the current result as the first value
+    // and get a new second value
+    else if (activeNum == "res" && op != input){
+        // switch activeNum to "y"
+        op = input;
+        switchNum();
         switchNum();
         currentNum = "0";
     }
