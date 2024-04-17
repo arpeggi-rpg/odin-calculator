@@ -22,7 +22,7 @@ const multiply = function(num1, num2) {
 };
 
 const divide = function(num1, num2) {
-    if (num2 == 0) return "nuh uh";
+    if (num2 == 0) return "nuh uh";  // No dividing by 0 you silly goose
     return num1 / num2;
 };
 
@@ -63,7 +63,7 @@ const switchNum = function(isRes = false) {
 const updateNum = function(input) {
     if (activeNum == "res") {switchNum(); currentNum = "0";}
     if (input == "." && currentNum.indexOf(".") != -1) return;
-    if (currentNum == "0") currentNum = input;
+    if (currentNum == "0" || currentNum == "nuh uh") currentNum = input;
     else currentNum += input;
     if (display.textContent.length < 10) display.textContent = currentNum;
 }
