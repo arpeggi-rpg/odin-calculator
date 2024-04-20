@@ -84,9 +84,14 @@ const switchNum = function(isRes = false) {
 const updateNum = function(input) {
     if (activeNum == "res") {switchNum(); currentNum = "0";}
     if (input == "." && currentNum.indexOf(".") != -1) return;
-    if (currentNum == "0" || currentNum == "nuh uh") currentNum = input;
-    else currentNum += input;
-    if (display.textContent.length < 10) updateDisplay(parseFloat(currentNum));
+    if (currentNum == "0" || currentNum == "nuh uh") {
+        currentNum = input;
+        updateDisplay(currentNum);
+    }
+    else {
+        currentNum += input;
+        if (display.textContent.length < 10) updateDisplay(parseFloat(currentNum));
+    } 
 }
 
 const updateEquals = function() {
