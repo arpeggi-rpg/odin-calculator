@@ -1,4 +1,4 @@
-#Basic calculator app using JS
+# Basic calculator app using JS
 
 ## Implemented:
 - Perform operations on two numbers
