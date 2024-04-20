@@ -41,6 +41,27 @@ const calc = function(num1, num2) {
     }
 };
 
+const updateDisplay = function(num) {
+    if (num > 9999999999){
+        num = num.toExponential(4);
+    }
+    let numStr = num.toString();
+    if (numStr.length > 10){
+        let decPoint = numStr.indexOf(".");
+        if (decPoint == 9){
+            numStr = Math.round(num).toString();
+        }
+        else {
+            let precision = 9 - decPoint;
+            numStr = num.toPrecision(precision);
+        }
+    }
+    if (numStr.length > 10){
+        console.warn("Number exceeds limit!");
+    }
+    display.textContent = numStr;
+}
+
 const switchNum = function(isRes = false) {
     /*
     Res state - If the user presses the same operator button repeatedly,
@@ -65,7 +86,7 @@ const updateNum = function(input) {
     if (input == "." && currentNum.indexOf(".") != -1) return;
     if (currentNum == "0" || currentNum == "nuh uh") currentNum = input;
     else currentNum += input;
-    if (display.textContent.length < 10) display.textContent = currentNum;
+    if (display.textContent.length < 10) updateDisplay(parseFloat(currentNum));
 }
 
 const updateEquals = function() {
@@ -73,7 +94,7 @@ const updateEquals = function() {
         x = parseFloat(currentNum);
         op = "+";
         let result = calc(x, 0);
-        display.textContent = result.toString();
+        updateDisplay(result);
     }
     else if (activeNum == "res"){
         switchNum();
@@ -85,7 +106,7 @@ const updateEquals = function() {
         x = result;
         let resultStr = result.toString();
         currentNum = resultStr;
-        display.textContent = resultStr;
+        updateDisplay(result);
         switchNum();
     }
 }
@@ -111,7 +132,7 @@ const updateOp = function(input) {
         op = input;
         let result = calc(x, y);
         x = result;
-        display.textContent = result.toString();
+        updateDisplay(result);
         switchNum(isRes = true);
     }
 }
