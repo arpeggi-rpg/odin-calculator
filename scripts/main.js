@@ -73,12 +73,7 @@ const switchNum = function(isRes = false) {
     when the calculator first loads.
     */
     if (isRes) {activeNum = "res"; return;} 
-    if (activeNum == "x") {
-        activeNum = "y";
-    }
-    else {
-        activeNum = "x";
-    }
+    activeNum = activeNum == "x" ? "y" : "x";
 }
 
 const updateNum = function(input) {
@@ -93,6 +88,8 @@ const updateNum = function(input) {
         if (display.textContent.length < 10) updateDisplay(parseFloat(currentNum));
     } 
 }
+
+
 
 const updateEquals = function() {
     if (activeNum == "x"){
