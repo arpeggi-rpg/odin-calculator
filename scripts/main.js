@@ -3,6 +3,7 @@ let op = "";
 let y = 0;
 let activeNum = "x";
 let currentNum = "0";
+const calculatorButtons = Array.from(document.querySelectorAll(".buttonrow")).flatMap((row) => Array.from(row.children));
 const cButton = document.querySelector("#cButton");
 const backspaceButton = document.querySelector("#backspaceButton");
 const signButton = document.querySelector("#signButton");
@@ -12,15 +13,38 @@ const decimalButton = document.querySelector("#decimalButton");
 const equalsButton = document.querySelector("#equalsButton");
 const display = document.querySelector("#screenContents");
 
+const handleKeypress = function(key) {
+    switch(key) {
+        case "Backspace":
+            backspaceButton.click();
+            return;
+        case "F9":
+            signButton.click();
+            return;
+        case "Enter":
+            equalsButton.click();
+            return;
+        default:
+            for (let button of calculatorButtons) {
+                if (key == button.textContent) {
+                    button.click();
+                    return;
+                }
+            }
+            return;
+    }
+
+}
+
 const calc = function(num1, num2) {
-    switch (op) {
-        case '+':
+    switch(op) {
+        case "+":
             return num1 + num2;
-        case '-':
+        case "-":
             return num1 - num2;
-        case '*':
+        case "*":
             return num1 * num2;
-        case '/':
+        case "/":
             if (num2 == 0) return "nuh uh";
             return num1 / num2;
         default:
@@ -173,3 +197,4 @@ decimalButton.addEventListener("click", () => updateNum(decimalButton.textConten
 cButton.addEventListener("click", () => clearAll());
 backspaceButton.addEventListener("click", () => backspace());
 signButton.addEventListener("click", () => flipSign());
+document.addEventListener("keydown", (e) => handleKeypress(e.key));
