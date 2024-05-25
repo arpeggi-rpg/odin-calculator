@@ -3,6 +3,7 @@ let op = "";
 let y = 0;
 let activeNum = "x";
 let currentNum = "0";
+const cButton = document.querySelector("#cButton");
 const digitButtons = document.querySelectorAll(".digitButton");
 const opButtons = document.querySelectorAll(".opButton");
 const decimalButton = document.querySelector("#decimalButton");
@@ -89,7 +90,13 @@ const updateNum = function(input) {
     } 
 }
 
-
+const clearAll = function() {
+    activeNum = "x";
+    currentNum = "0";
+    x = 0;
+    y = 0;
+    display.textContent = "0";
+}
 
 const updateEquals = function() {
     if (activeNum == "x"){
@@ -155,3 +162,4 @@ for (let button of opButtons) {
 }
 equalsButton.addEventListener("click", () => updateEquals(equalsButton.textContent));
 decimalButton.addEventListener("click", () => updateNum(decimalButton.textContent));
+cButton.addEventListener("click", () => clearAll());
