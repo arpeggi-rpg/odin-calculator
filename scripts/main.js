@@ -5,6 +5,7 @@ let activeNum = "x";
 let currentNum = "0";
 const cButton = document.querySelector("#cButton");
 const backspaceButton = document.querySelector("#backspaceButton");
+const signButton = document.querySelector("#signButton");
 const digitButtons = document.querySelectorAll(".digitButton");
 const opButtons = document.querySelectorAll(".opButton");
 const decimalButton = document.querySelector("#decimalButton");
@@ -110,6 +111,17 @@ const backspace = function() {
     }
 }
 
+const flipSign = function() {
+    if (currentNum.at(0) == "-"){
+        currentNum = currentNum.slice(1);
+        display.textContent = display.textContent.slice(1);
+    }
+    else {
+        currentNum = "-" + currentNum;
+        display.textContent = "-" + display.textContent;
+    }
+}
+
 const updateEquals = function() {
     if (activeNum == "x"){
         x = parseFloat(currentNum);
@@ -176,3 +188,4 @@ equalsButton.addEventListener("click", () => updateEquals(equalsButton.textConte
 decimalButton.addEventListener("click", () => updateNum(decimalButton.textContent));
 cButton.addEventListener("click", () => clearAll());
 backspaceButton.addEventListener("click", () => backspace());
+signButton.addEventListener("click", () => flipSign());
