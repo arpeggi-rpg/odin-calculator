@@ -129,13 +129,21 @@ const updateOp = function(input) {
         switchNum();
         currentNum = "0";
     }
+    else if (activeNum == "y" && op != input){
+        y = parseFloat(currentNum);
+        let result = calc(x, y);
+        x = result;
+        updateDisplay(result);
+        currentNum = "0";
+        op = input;
+    }
     else {
         y = parseFloat(currentNum);
-        op = input;
         let result = calc(x, y);
         x = result;
         updateDisplay(result);
         switchNum(isRes = true);
+        op = input;
     }
 }
 
