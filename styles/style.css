@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+html {
+    background-color: #38384b;
+    color: lightgray;
+    margin: 0;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+    font-size: 5vmin;
+    box-sizing: border-box;
+}
+
+#calculatorBody {
+    border: 5px solid #8e9eb1;
+    border-radius: 5px;
+    background-color: #534c83;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#screen {
+    background-color: #38384b;
+    border: 2px solid;
+    border-radius: 2px;
+    width: 30vmin;
+    padding: 5px;
+    margin: 10px;
+}
+
+#calculatorButtons {
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex: 1 0 0px;
+    gap: 5px;
+    width: 30vmin;
+    flex-direction: column;
+}
+
+#calculatorButtons > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+button {
+    aspect-ratio: 1 / 1;
+    flex: 1 0 0px;
+    height: 45px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2vmin;
+    font-weight: bold;
+}
+
+#row1 > button{
+    background-color: #ffa07a;
+}
+
+#row2 > button {
+    background-color: #d7e071;
+}
+
+#row3 > button {
+    background-color: #88bf99;
+}
+
+#row4 > button {
+    background-color: #7F9FD2;
+}
+
+#row5 > button {
+    background-color: #d07ed6;
+}
+
+#signButton {
+    font-size: 1.5vmin;
+}
+
+#equalsButton {
+    flex-grow: 2;
+}
